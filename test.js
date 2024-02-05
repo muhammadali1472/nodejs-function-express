@@ -2,7 +2,9 @@ const express = require('express');
 const https = require('https');
 const querystring = require('querystring');
 const app = express();
-const port = process.env.PORT || 8080; // Updated to use Heroku's port or 8080 as fallback
+const port = process.env.PORT || 8080;
+const cors = require('cors');
+app.use(cors());
 
 // Enable JSON body parsing middleware
 app.use(express.json());
