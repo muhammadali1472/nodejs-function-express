@@ -2,7 +2,7 @@ const express = require('express');
 const https = require('https');
 const querystring = require('querystring');
 const app = express();
-const port = 8080; // or any port you prefer
+const port = process.env.PORT || 8080; // Updated to use Heroku's port or 8080 as fallback
 
 // Enable JSON body parsing middleware
 app.use(express.json());
@@ -56,6 +56,11 @@ app.post('/getCheckoutId', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+});
+
+// Add a new route for the root URL
+app.get('/', (req, res) => {
+    res.send('The app is running!');
 });
 
 app.listen(port, () => {
